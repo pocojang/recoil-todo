@@ -1,14 +1,18 @@
 import React from 'react';
 
-function Item() {
+import { Todo } from '../interfaces';
+
+type Props = Pick<Todo, 'text' | 'done'>;
+
+function Item({ text, done }: Props) {
   return (
-    <li>
+    <li className={done ? 'completed' : ''}>
       <div className="view">
-        <input className="toggle" type="checkbox" />
-        <label>123</label>
+        <input className="toggle" type="checkbox" checked={done} />
+        <label>{text}</label>
         <button className="destroy"></button>
       </div>
-      <input className="edit" value="123" />
+      <input className="edit" value={text} />
     </li>
   );
 }
