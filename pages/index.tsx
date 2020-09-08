@@ -25,10 +25,23 @@ function IndexPage() {
     });
   };
 
+  const toggleAllTodo = (isDone: boolean) => {
+    setTodoList((prevTodoList) => {
+      return prevTodoList.map((todo) => ({
+        ...todo,
+        done: isDone,
+      }));
+    });
+  };
+
+  if (!todoList.length) {
+    return <Header createTodo={createTodo} />;
+  }
+
   return (
     <React.Fragment>
       <Header createTodo={createTodo} />
-      <List todoList={todoList} />
+      <List todoList={todoList} toggleAllTodo={toggleAllTodo} />
       <Footer activeTodoCount={todoList.filter(({ done }) => !done).length} />
     </React.Fragment>
   );
