@@ -1,13 +1,17 @@
 import React from 'react';
 
-function Footer() {
+type Props = {
+  activeTodoCount: number;
+};
+
+function Footer({ activeTodoCount }: Props) {
+  const isPluralNouns = activeTodoCount !== 1;
+
   return (
     <footer className="footer">
       <span className="todo-count">
-        <strong>3</strong>
-        <span> </span>
-        <span>items</span>
-        <span> left</span>
+        <strong>{activeTodoCount}</strong>
+        <span> item{isPluralNouns && 's'} left</span>
       </span>
       <ul className="filters">
         <li>

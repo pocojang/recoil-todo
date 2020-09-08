@@ -29,7 +29,7 @@ function IndexPage() {
     <React.Fragment>
       <Header createTodo={createTodo} />
       <List />
-      <Footer />
+      <Footer activeTodoCount={todoList.filter(({ done }) => !done).length} />
     </React.Fragment>
   );
 }
