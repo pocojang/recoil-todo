@@ -1,9 +1,12 @@
-import { User } from '../interfaces'
+import { Todo } from '../interfaces';
 
-/** Dummy user data. */
-export const sampleUserData: User[] = [
-  { id: 101, name: 'Alice' },
-  { id: 102, name: 'Bob' },
-  { id: 103, name: 'Caroline' },
-  { id: 104, name: 'Dave' },
-]
+export const sampleData: Todo[] = [
+  { id: 0, text: '그저께 한 일', done: true },
+  { id: 1, text: '어제 한 일', done: true },
+  { id: 2, text: '오늘 할 일', done: false },
+  { id: 3, text: '내일 할 일', done: false },
+  { id: 4, text: '내일 모레 할 일', done: false },
+  { id: 5, text: '다음 주 할 일', done: false },
+  { id: 6, text: '다음 달 할 일', done: false },
+  { id: 7, text: '언젠가는 할 일', done: false },
+];

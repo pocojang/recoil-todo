@@ -4,7 +4,8 @@
 //
 // import User from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
-}
+export type Todo = {
+  id: number;
+  text: string;
+  done: boolean;
+};
