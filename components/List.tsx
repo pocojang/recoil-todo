@@ -6,9 +6,10 @@ import { Todo } from '../interfaces';
 type Props = {
   todoList: Todo[];
   toggleAllTodo: (isDone: boolean) => void;
+  removeTodo: (selectedId: number) => void;
 };
 
-function List({ todoList, toggleAllTodo }: Props) {
+function List({ todoList, toggleAllTodo, removeTodo }: Props) {
   const onToggleAllTodo = () => {
     const isSomeActiveTodo = todoList.some(({ done }) => !done);
 
@@ -31,8 +32,8 @@ function List({ todoList, toggleAllTodo }: Props) {
       />
       <label htmlFor="toggle-all" />
       <ul className="todo-list">
-        {todoList.map(({ id, text, done }) => (
-          <Item key={id} text={text} done={done} />
+        {todoList.map((todo) => (
+          <Item key={todo.id} todo={todo} removeTodo={removeTodo} />
         ))}
       </ul>
     </section>

@@ -25,6 +25,12 @@ function IndexPage() {
     });
   };
 
+  const removeTodo = (selectedId: number) => {
+    setTodoList((prevTodoList) =>
+      prevTodoList.filter(({ id }) => id !== selectedId),
+    );
+  };
+
   const toggleAllTodo = (isDone: boolean) => {
     setTodoList((prevTodoList) => {
       return prevTodoList.map((todo) => ({
@@ -41,7 +47,11 @@ function IndexPage() {
   return (
     <React.Fragment>
       <Header createTodo={createTodo} />
-      <List todoList={todoList} toggleAllTodo={toggleAllTodo} />
+      <List
+        todoList={todoList}
+        toggleAllTodo={toggleAllTodo}
+        removeTodo={removeTodo}
+      />
       <Footer activeTodoCount={todoList.filter(({ done }) => !done).length} />
     </React.Fragment>
   );
