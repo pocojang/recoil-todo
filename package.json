@@ -11,7 +11,8 @@
   "dependencies": {
     "next": "latest",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "todomvc-app-css": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
