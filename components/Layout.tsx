@@ -5,7 +5,21 @@ type Props = {
 };
 
 function Layout({ children }: Props) {
-  return <div>{children}</div>;
+  return (
+    <React.Fragment>
+      <section className="todoapp">{children}</section>
+
+      <footer className="info">
+        <p>Double-click to edit a todo</p>
+        <p>
+          Created by <a href="http://github.com/devJang/">devJang</a>
+        </p>
+        <p>
+          Part of <a href="http://todomvc.com">TodoMVC</a>
+        </p>
+      </footer>
+    </React.Fragment>
+  );
 }
 
 export default Layout;

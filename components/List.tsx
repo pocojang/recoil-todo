@@ -1,19 +1,19 @@
-import * as React from 'react'
-import ListItem from './ListItem'
-import { User } from '../interfaces'
+import React from 'react';
 
-type Props = {
-  items: User[]
+import Item from './Item';
+
+function List() {
+  return (
+    <section className="main">
+      <input id="toggle-all" className="toggle-all" type="checkbox" />
+      <label htmlFor="toggle-all" />
+      <ul className="todo-list">
+        {[1, 2, 3, 4].map((_, i) => (
+          <Item key={i} />
+        ))}
+      </ul>
+    </section>
+  );
 }
 
-const List = ({ items }: Props) => (
-  <ul>
-    {items.map((item) => (
-      <li key={item.id}>
-        <ListItem data={item} />
-      </li>
-    ))}
-  </ul>
-)
-
-export default List
+export default List;
