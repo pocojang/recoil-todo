@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { Todo } from '../interfaces';
 
@@ -62,6 +62,15 @@ function Item({
   const onToggleTodo = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     toggleTodo(id, target.checked);
   };
+
+  useEffect(() => {
+    if (!editMode) {
+      return;
+    }
+
+    inputRef.current?.focus();
+    inputRef.current?.setSelectionRange(text.length, text.length);
+  }, [editMode]);
 
   return (
     <li className={todoClassName}>
