@@ -1,10 +1,14 @@
 import React from 'react';
 
+import Link from 'next/link';
+
 type Props = {
   activeTodoCount: number;
+  completedTodoCount: number;
+  removeTodos: () => void;
 };
 
-function Footer({ activeTodoCount }: Props) {
+function Footer({ activeTodoCount, completedTodoCount, removeTodos }: Props) {
   const isPluralNouns = activeTodoCount !== 1;
 
   return (
@@ -14,22 +18,29 @@ function Footer({ activeTodoCount }: Props) {
         <span> item{isPluralNouns && 's'} left</span>
       </span>
       <ul className="filters">
-        <li>
-          <a href="#/" className="">
-            All
-          </a>
-        </li>
+        <Link href="/">
+          <li>
+            <a className="">All</a>
+          </li>
+        </Link>
         <span></span>
-        <li>
-          <a href="#/active" className="selected">
-            Active
-          </a>
-        </li>
+        <Link href="/active">
+          <li>
+            <a className="selected">Active</a>
+          </li>
+        </Link>
         <span> </span>
-        <li>
-          <a href="#/completed">Completed</a>
-        </li>
+        <Link href="/completed">
+          <li>
+            <a>Completed</a>
+          </li>
+        </Link>
       </ul>
+      {!!completedTodoCount && (
+        <button className="clear-completed" onClick={removeTodos}>
+          Clear completed
+        </button>
+      )}
     </footer>
   );
 }

@@ -31,6 +31,10 @@ function IndexPage() {
     );
   };
 
+  const removeTodos = () => {
+    setTodoList((prevTodoList) => prevTodoList.filter(({ done }) => !done));
+  };
+
   const updateTodo = <
     T1 extends keyof Pick<Todo, 'text' | 'done'>,
     T2 extends T1 extends 'text' ? string : boolean
@@ -83,7 +87,11 @@ function IndexPage() {
         removeTodo={removeTodo}
         toggleAllTodo={toggleAllTodo}
       />
-      <Footer activeTodoCount={todoList.filter(({ done }) => !done).length} />
+      <Footer
+        activeTodoCount={todoList.filter(({ done }) => !done).length}
+        completedTodoCount={todoList.filter(({ done }) => done).length}
+        removeTodos={removeTodos}
+      />
     </React.Fragment>
   );
 }
