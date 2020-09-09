@@ -14,7 +14,7 @@ function Header({ createTodo }: Props) {
 
     const inputRefCurr = inputRef.current;
 
-    if (inputRefCurr) {
+    if (inputRefCurr.value) {
       createTodo(inputRefCurr.value);
 
       inputRefCurr.value = '';
