@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import Header from '../components/Header';
-import List from '../components/List';
-import Footer from '../components/Footer';
+import Header from '@/components/Header';
+import List from '@/components/List';
+import Footer from '@/components/Footer';
 
-import { sampleData } from '../utils/sample-data';
+import { sampleData } from '@/utils/sample-data';
 import { Todo } from '../interfaces';
 
 function IndexPage() {

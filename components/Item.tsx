@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import { Todo } from '../interfaces';
-import useOutsideClick from '../hooks/useOutsideClick';
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 type Props = {
   todo: Todo;
