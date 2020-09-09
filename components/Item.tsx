@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import { Todo } from '../interfaces';
+import useOutsideClick from '../hooks/useOutsideClick';
 
 type Props = {
   todo: Todo;
@@ -62,6 +63,14 @@ function Item({
   const onToggleTodo = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     toggleTodo(id, target.checked);
   };
+
+  useOutsideClick(inputRef, () => {
+    setEditMode(false);
+
+    if (inputRef.current) {
+      inputRef.current.value = text;
+    }
+  });
 
   useEffect(() => {
     if (!editMode) {
