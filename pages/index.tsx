@@ -31,6 +31,36 @@ function IndexPage() {
     );
   };
 
+  const updateTodo = <
+    T1 extends keyof Pick<Todo, 'text' | 'done'>,
+    T2 extends T1 extends 'text' ? string : boolean
+  >({
+    selectedId,
+    prop,
+    value,
+  }: {
+    selectedId: number;
+    prop: T1;
+    value: T2;
+  }) => {
+    setTodoList((prevTodoList) => {
+      const selectedTodoIndex = prevTodoList.findIndex(
+        ({ id }) => id === selectedId,
+      );
+
+      const newTodo = {
+        ...prevTodoList[selectedTodoIndex],
+        [prop]: value,
+      };
+
+      return [
+        ...prevTodoList.slice(0, selectedTodoIndex),
+        newTodo,
+        ...prevTodoList.slice(selectedTodoIndex + 1),
+      ];
+    });
+  };
+
   const toggleAllTodo = (isDone: boolean) => {
     setTodoList((prevTodoList) => {
       return prevTodoList.map((todo) => ({
@@ -49,8 +79,9 @@ function IndexPage() {
       <Header createTodo={createTodo} />
       <List
         todoList={todoList}
-        toggleAllTodo={toggleAllTodo}
+        updateTodo={updateTodo}
         removeTodo={removeTodo}
+        toggleAllTodo={toggleAllTodo}
       />
       <Footer activeTodoCount={todoList.filter(({ done }) => !done).length} />
     </React.Fragment>
