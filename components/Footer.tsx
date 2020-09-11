@@ -24,13 +24,13 @@ function Footer({ activeTodoCount, completedTodoCount, removeTodos }: Props) {
           </li>
         </Link>
         <span></span>
-        <Link href="/active">
+        <Link href="/[status]" as="/active">
           <li>
             <a className="selected">Active</a>
           </li>
         </Link>
         <span> </span>
-        <Link href="/completed">
+        <Link href="/[status]" as="/completed">
           <li>
             <a>Completed</a>
           </li>
