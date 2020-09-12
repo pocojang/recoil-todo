@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 import { sampleData } from '@/utils/sample-data';
 import { Todo } from '../interfaces';
 
+// TODO: 로직 분리하기 (contextAPI or redux or recoil)
 export default function App({ Component, pageProps, router }: AppProps) {
   const [todoList, setTodoList] = useState<Todo[]>(sampleData);
 

@@ -1,5 +1,6 @@
 import { Todo } from '../interfaces';
 
+// TODO: persist data (browser storage or API)
 export const sampleData: Todo[] = [
   { id: 0, text: '그저께 한 일', done: true },
   { id: 1, text: '어제 한 일', done: true },

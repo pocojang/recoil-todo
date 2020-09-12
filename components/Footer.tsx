@@ -8,6 +8,7 @@ type Props = {
   removeTodos: () => void;
 };
 
+// TODO: active style
 function Footer({ activeTodoCount, completedTodoCount, removeTodos }: Props) {
   const isPluralNouns = activeTodoCount !== 1;
 
