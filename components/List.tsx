@@ -56,9 +56,9 @@ function List({ todoList, updateTodo, toggleAllTodo, removeTodo }: Props) {
       />
       <label htmlFor="toggle-all" />
       <ul className="todo-list">
-        {todoList.map((todo) => (
+        {todoList.map((todo, index) => (
           <Item
-            key={todo.id}
+            key={index}
             todo={todo}
             removeTodo={removeTodo}
             toggleTodo={onToggleTodo}
