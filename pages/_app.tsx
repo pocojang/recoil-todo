@@ -2,7 +2,7 @@ import '../node_modules/todomvc-app-css/index.css';
 
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import Layout from '@/components/Layout';
 import Header from '@/components/Header';
@@ -12,8 +12,23 @@ import Footer from '@/components/Footer';
 import { sampleData } from '@/utils/sample-data';
 import { Todo } from '../interfaces';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
   const [todoList, setTodoList] = useState<Todo[]>(sampleData);
+
+  const computedTodoList = useMemo(() => {
+    const computedStatus = router.asPath.split('/')[1];
+
+    switch (computedStatus) {
+      case 'active':
+        return todoList.filter(({ done }) => !done);
+
+      case 'completed':
+        return todoList.filter(({ done }) => done);
+
+      default:
+        return todoList;
+    }
+  }, [router.asPath, todoList]);
 
   const createTodo = (text: string) => {
     setTodoList((prevTodoList) => {
@@ -71,12 +86,12 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   const toggleAllTodo = (isDone: boolean) => {
-    setTodoList((prevTodoList) => {
-      return prevTodoList.map((todo) => ({
+    setTodoList((prevTodoList) =>
+      prevTodoList.map((todo) => ({
         ...todo,
         done: isDone,
-      }));
-    });
+      })),
+    );
   };
 
   return (
@@ -92,7 +107,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <Component {...pageProps}>
           <List
-            todoList={todoList}
+            todoList={computedTodoList}
             updateTodo={updateTodo}
             removeTodo={removeTodo}
             toggleAllTodo={toggleAllTodo}
