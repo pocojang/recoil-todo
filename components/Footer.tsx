@@ -18,7 +18,7 @@ function Footer({ activeTodoCount, completedTodoCount, removeTodos }: Props) {
         <span> item{isPluralNouns && 's'} left</span>
       </span>
       <ul className="filters">
-        <Link href="/">
+        <Link href="/" as="/">
           <li>
             <a className="">All</a>
           </li>
