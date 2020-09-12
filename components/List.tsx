@@ -21,13 +21,7 @@ function List({ todoList, updateTodo, toggleAllTodo, removeTodo }: Props) {
   const onToggleAllTodo = () => {
     const isSomeActiveTodo = todoList.some(({ done }) => !done);
 
-    if (isSomeActiveTodo) {
-      toggleAllTodo(true);
-
-      return;
-    }
-
-    toggleAllTodo(false);
+    toggleAllTodo(isSomeActiveTodo);
   };
 
   const onToggleTodo = (selectedId: number, isDone: boolean) => {
