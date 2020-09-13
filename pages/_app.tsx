@@ -4,12 +4,12 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React, { useMemo, useState } from 'react';
 
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
-import List from '@/components/List';
 import Footer from '@/components/Footer';
-
+import Header from '@/components/Header';
+import Layout from '@/components/Layout';
+import List from '@/components/List';
 import { sampleData } from '@/utils/sample-data';
+
 import { Todo } from '../interfaces';
 
 // TODO: 로직 분리하기 (contextAPI or redux or recoil)

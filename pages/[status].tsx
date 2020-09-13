@@ -1,7 +1,11 @@
 import React from 'react';
 
-const StatusPage: React.FC = ({ children }) => {
-  return <React.Fragment>{children}</React.Fragment>;
+type Props = {
+  children: React.ReactNode;
 };
+
+function StatusPage({ children }: Props) {
+  return <React.Fragment>{children}</React.Fragment>;
+}
 
 export default StatusPage;
