@@ -22,14 +22,27 @@ export default function App({ Component, pageProps, router }: AppProps) {
     switch (computedStatus) {
       case 'active':
         return todoList.filter(({ done }) => !done);
-
       case 'completed':
         return todoList.filter(({ done }) => done);
-
       default:
         return todoList;
     }
   }, [router.asPath, todoList]);
+
+  const { allTodoCount, activeTodoCount, completedTodoCount } = useMemo(() => {
+    return {
+      allTodoCount: todoList.length,
+      ...todoList.reduce(
+        ({ activeTodoCount, completedTodoCount }, { done }) => ({
+          activeTodoCount: done ? activeTodoCount : activeTodoCount + 1,
+          completedTodoCount: done
+            ? completedTodoCount + 1
+            : completedTodoCount,
+        }),
+        { activeTodoCount: 0, completedTodoCount: 0 },
+      ),
+    };
+  }, [todoList]);
 
   const createTodo = (text: string) => {
     setTodoList((prevTodoList) => {
@@ -105,21 +118,23 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
       <Layout>
         <Header createTodo={createTodo} />
-
-        <Component {...pageProps}>
-          <List
-            todoList={computedTodoList}
-            updateTodo={updateTodo}
-            removeTodo={removeTodo}
-            toggleAllTodo={toggleAllTodo}
-          />
-        </Component>
-
-        <Footer
-          activeTodoCount={todoList.filter(({ done }) => !done).length}
-          completedTodoCount={todoList.filter(({ done }) => done).length}
-          removeTodos={removeTodos}
-        />
+        {!!allTodoCount && (
+          <React.Fragment>
+            <Component {...pageProps}>
+              <List
+                todoList={computedTodoList}
+                updateTodo={updateTodo}
+                removeTodo={removeTodo}
+                toggleAllTodo={toggleAllTodo}
+              />
+            </Component>
+            <Footer
+              activeTodoCount={activeTodoCount}
+              completedTodoCount={completedTodoCount}
+              removeTodos={removeTodos}
+            />
+          </React.Fragment>
+        )}
       </Layout>
     </React.Fragment>
   );
