@@ -11,3 +11,9 @@ export const sampleData: Todo[] = [
   { id: 6, text: '다음 달 할 일', done: false },
   { id: 7, text: '언젠가는 할 일', done: false },
 ];
+
+export enum sampleFilterData {
+  all = '/',
+  active = '/active',
+  completed = '/completed',
+}
