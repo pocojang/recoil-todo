@@ -1,5 +1,7 @@
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
+
+import FooterNavLink from './FooterNavLink';
 
 type Props = {
   activeTodoCount: number;
@@ -9,6 +11,8 @@ type Props = {
 
 // TODO: active style
 function Footer({ activeTodoCount, completedTodoCount, removeTodos }: Props) {
+  const { asPath } = useRouter();
+
   const isPluralNouns = activeTodoCount !== 1;
 
   return (
@@ -17,25 +21,23 @@ function Footer({ activeTodoCount, completedTodoCount, removeTodos }: Props) {
         <strong>{activeTodoCount}</strong>
         <span> item{isPluralNouns && 's'} left</span>
       </span>
+
       <ul className="filters">
-        <Link href="/" as="/">
-          <li>
-            <a className="">All</a>
-          </li>
-        </Link>
-        <span></span>
-        <Link href="/[status]" as="/active">
-          <li>
-            <a className="selected">Active</a>
-          </li>
-        </Link>
-        <span> </span>
-        <Link href="/[status]" as="/completed">
-          <li>
-            <a>Completed</a>
-          </li>
-        </Link>
+        <FooterNavLink currentPath={asPath} asPath="/" href="/">
+          All
+        </FooterNavLink>
+        <FooterNavLink currentPath={asPath} asPath="/active" href="/[status]">
+          Active
+        </FooterNavLink>
+        <FooterNavLink
+          currentPath={asPath}
+          asPath="/completed"
+          href="/[status]"
+        >
+          Completed
+        </FooterNavLink>
       </ul>
+
       {!!completedTodoCount && (
         <button className="clear-completed" onClick={removeTodos}>
           Clear completed
