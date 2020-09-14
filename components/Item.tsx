@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 import { Todo } from '../interfaces';
-import useOutsideClick from '@/hooks/useOutsideClick';
 
 type Props = {
   todo: Todo;
@@ -79,7 +80,7 @@ function Item({
 
     inputRef.current?.focus();
     inputRef.current?.setSelectionRange(text.length, text.length);
-  }, [editMode]);
+  }, [editMode, text]);
 
   return (
     <li className={todoClassName}>

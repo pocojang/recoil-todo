@@ -48,7 +48,7 @@ function List({ todoList, updateTodo, toggleAllTodo, removeTodo }: Props) {
         type="checkbox"
         onClick={onToggleAllTodo}
       />
-      <label htmlFor="toggle-all" />
+      <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
         {todoList.map((todo, index) => (
           <Item
