@@ -22,4 +22,22 @@ const computedTodoListState = selector({
   set: ({ set }, newValue: any) => set(filterState, newValue),
 });
 
-export { computedTodoListState };
+const todoCountState = selector({
+  key: 'todoCountState',
+  get: ({ get }) => {
+    const todoList = get(todoListState);
+
+    return {
+      all: todoList.length,
+      ...todoList.reduce(
+        ({ active, completed }, { done }) => ({
+          active: done ? active : active + 1,
+          completed: done ? completed + 1 : completed,
+        }),
+        { active: 0, completed: 0 },
+      ),
+    };
+  },
+});
+
+export { computedTodoListState, todoCountState };
