@@ -12,6 +12,7 @@
     "next": "latest",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "recoil": "^0.0.10",
     "todomvc-app-css": "^2.3.0"
   },
   "devDependencies": {
