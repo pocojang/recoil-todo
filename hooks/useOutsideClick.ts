@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 function useOutsideClick(
   ref: React.RefObject<HTMLElement>,
-  callback: () => any,
+  callback: (...args: any[]) => void,
 ): void {
   const handleClick = (e: MouseEvent) => {
     if (e.target instanceof Element) {
