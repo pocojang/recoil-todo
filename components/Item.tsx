@@ -16,7 +16,7 @@ function Item({
   toggleTodo,
   removeTodo,
   updateTodo,
-}: Props) {
+}: any) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [editMode, setEditMode] = useState<boolean>(false);
