@@ -1,14 +1,27 @@
 import { Todo } from 'interfaces';
 import React from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { todoListState } from 'store/atom';
 import { computedTodoListState } from 'store/selector';
 
 import Item from './Item';
 
 function List() {
-  const computedTodoList = useRecoilValue(computedTodoListState);
+  const [computedTodoList] = useRecoilState(computedTodoListState);
   const setTodoListState = useSetRecoilState(todoListState);
+
+  const onToggleAllTodo = () => {
+    const isSomeActiveTodo = (computedTodoList as Todo[]).some(
+      ({ done }) => !done,
+    );
+
+    setTodoListState((prevTodoList) =>
+      prevTodoList.map((todo) => ({
+        ...todo,
+        done: isSomeActiveTodo,
+      })),
+    );
+  };
 
   const removeTodo = (selectedId: number) => {
     setTodoListState((prevTodoList) =>
@@ -68,7 +81,7 @@ function List() {
         id="toggle-all"
         className="toggle-all"
         type="checkbox"
-        // onClick={onToggleAllTodo}
+        onClick={onToggleAllTodo}
       />
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
