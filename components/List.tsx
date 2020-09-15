@@ -16,6 +16,44 @@ function List() {
     );
   };
 
+  const updateTodo = <
+    T1 extends keyof Pick<Todo, 'text' | 'done'>,
+    T2 extends T1 extends 'text' ? string : boolean
+  >({
+    selectedId,
+    prop,
+    value,
+  }: {
+    selectedId: number;
+    prop: T1;
+    value: T2;
+  }) => {
+    setTodoListState((prevTodoList) => {
+      const selectedTodoIndex = prevTodoList.findIndex(
+        ({ id }) => id === selectedId,
+      );
+
+      const newTodo = {
+        ...prevTodoList[selectedTodoIndex],
+        [prop]: value,
+      };
+
+      return [
+        ...prevTodoList.slice(0, selectedTodoIndex),
+        newTodo,
+        ...prevTodoList.slice(selectedTodoIndex + 1),
+      ];
+    });
+  };
+
+  const onUpdateTodo = (selectedId: number, text: string) => {
+    updateTodo({
+      selectedId,
+      prop: 'text',
+      value: text,
+    });
+  };
+
   return (
     <section className="main">
       <input
@@ -27,7 +65,12 @@ function List() {
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
         {computedTodoList.map((todo: Todo, index: number) => (
-          <Item key={index} todo={todo} removeTodo={removeTodo} />
+          <Item
+            key={index}
+            todo={todo}
+            updateTodo={onUpdateTodo}
+            removeTodo={removeTodo}
+          />
         ))}
       </ul>
     </section>
