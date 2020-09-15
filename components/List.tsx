@@ -46,6 +46,14 @@ function List() {
     });
   };
 
+  const onToggleTodo = (selectedId: number, isDone: boolean) => {
+    updateTodo({
+      selectedId,
+      prop: 'done',
+      value: isDone,
+    });
+  };
+
   const onUpdateTodo = (selectedId: number, text: string) => {
     updateTodo({
       selectedId,
@@ -69,6 +77,7 @@ function List() {
             key={index}
             todo={todo}
             updateTodo={onUpdateTodo}
+            toggleTodo={onToggleTodo}
             removeTodo={removeTodo}
           />
         ))}
