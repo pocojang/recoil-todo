@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { todoListState } from 'store/atom';
 import { todoCountState } from 'store/selector';
 
 import FooterNavLink from './FooterNavLink';
@@ -11,8 +12,15 @@ function Footer() {
     active: activeTodoCount,
     completed: completedTodoCount,
   } = useRecoilValue(todoCountState);
+  const setTodoListState = useSetRecoilState(todoListState);
 
   const isPluralNouns = activeTodoCount !== 1;
+
+  const removeTodos = () => {
+    setTodoListState((prevTodoList) =>
+      prevTodoList.filter(({ done }) => !done),
+    );
+  };
 
   return (
     <footer className="footer">
@@ -38,7 +46,9 @@ function Footer() {
       </ul>
 
       {!!completedTodoCount && (
-        <button className="clear-completed">Clear completed</button>
+        <button className="clear-completed" onClick={removeTodos}>
+          Clear completed
+        </button>
       )}
     </footer>
   );
