@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { todoListState } from 'store/atom';
 import { computedTodoListState, todoCountState } from 'store/selector';
 
@@ -13,7 +13,7 @@ function Footer() {
     completed: completedTodoCount,
   } = useRecoilValue(todoCountState);
   const setTodoListState = useSetRecoilState(todoListState);
-  const [_, setComputedFilter] = useRecoilState(computedTodoListState);
+  const setComputedFilter = useSetRecoilState(computedTodoListState);
 
   const isPluralNouns = activeTodoCount !== 1;
 
