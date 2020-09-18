@@ -5,7 +5,8 @@ import Head from 'next/head';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 
-import AppContainer from '@/components/AppContainer';
+import ContentContainer from '@/components/ContentContainer';
+import Header from '@/components/Header';
 import Layout from '@/components/Layout';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -19,8 +20,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Layout>
         <RecoilRoot>
+          <Header />
           <Component {...pageProps}>
-            <AppContainer />
+            <ContentContainer />
           </Component>
         </RecoilRoot>
       </Layout>
