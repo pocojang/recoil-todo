@@ -41,7 +41,7 @@ function Header() {
 }
 
 const newTodoItem = (prevTodoList: Todo[], text: string) => {
-  const newId = prevTodoList.length + 1;
+  const newId = Math.max(...prevTodoList.map(({ id }) => id)) + 1;
 
   return [
     {
