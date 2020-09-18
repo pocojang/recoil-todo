@@ -44,12 +44,12 @@ const newTodoItem = (prevTodoList: Todo[], text: string) => {
   const newId = Math.max(...prevTodoList.map(({ id }) => id)) + 1;
 
   return [
+    ...prevTodoList,
     {
       id: newId,
       text: text,
       done: false,
     },
-    ...prevTodoList,
   ];
 };
 

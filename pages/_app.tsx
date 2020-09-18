@@ -5,13 +5,9 @@ import Head from 'next/head';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import AppContainer from '@/components/AppContainer';
 import Layout from '@/components/Layout';
-import List from '@/components/List';
 
-// TODO: 로직 분리하기 => recoil
-// TODO: List & Footer => conditional rendering
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <React.Fragment>
@@ -23,11 +19,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Layout>
         <RecoilRoot>
-          <Header />
           <Component {...pageProps}>
-            <List />
+            <AppContainer />
           </Component>
-          <Footer />
         </RecoilRoot>
       </Layout>
     </React.Fragment>
