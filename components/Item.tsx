@@ -6,17 +6,17 @@ import { Todo } from '../interfaces';
 
 type Props = {
   todo: Todo;
-  removeTodo: (selectedId: number) => void;
-  toggleTodo: (selectedId: number, isDone: boolean) => void;
   updateTodo: (selectedId: number, text: string) => void;
+  toggleTodo: (selectedId: number, isDone: boolean) => void;
+  removeTodo: (selectedId: number) => void;
 };
 
 function Item({
   todo: { id, text, done },
+  updateTodo,
   toggleTodo,
   removeTodo,
-  updateTodo,
-}: any) {
+}: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [editMode, setEditMode] = useState<boolean>(false);
