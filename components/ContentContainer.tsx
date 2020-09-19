@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { todoListState } from 'store/atom';
+import { todoListState } from 'store/atoms';
 
 import Footer from '@/components/Footer';
 import List from '@/components/List';

@@ -2,8 +2,8 @@ import { Todo } from 'interfaces';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { todoListState } from 'store/atom';
-import { computedTodoListState } from 'store/selector';
+import { todoListState } from 'store/atoms';
+import { computedTodoListState } from 'store/selectors';
 
 import Item from './Item';
 

@@ -1,7 +1,7 @@
 import { Todo } from 'interfaces';
 import React, { useRef } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { todoListState } from 'store/atom';
+import { todoListState } from 'store/atoms';
 
 function Header() {
   const inputRef = useRef<HTMLInputElement>(null);

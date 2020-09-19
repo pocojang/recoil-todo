@@ -2,7 +2,7 @@ import { selector, selectorFamily } from 'recoil';
 
 import { sampleFilterData } from '@/utils/sample-data';
 
-import { todoListState } from './atom';
+import { todoListState } from './atoms';
 
 type AsPath = typeof sampleFilterData[keyof typeof sampleFilterData] | string;
 
