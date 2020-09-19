@@ -1,30 +1,28 @@
 import { Todo } from 'interfaces';
 import React from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { todoListState } from 'store/atom';
 import { computedTodoListState } from 'store/selector';
 
 import Item from './Item';
 
 function List() {
-  const [computedTodoList] = useRecoilState(computedTodoListState);
-  const setTodoListState = useSetRecoilState(todoListState);
+  const computedTodoList = useRecoilValue(computedTodoListState);
+  const [originTodoList, setOriginTodoList] = useRecoilState(todoListState);
 
   const onToggleAllTodo = () => {
-    const isSomeActiveTodo = (computedTodoList as Todo[]).some(
-      ({ done }) => !done,
-    );
+    const isSomeCompletedTodo = originTodoList.some(({ done }) => done);
 
-    setTodoListState((prevTodoList) =>
+    setOriginTodoList((prevTodoList) =>
       prevTodoList.map((todo) => ({
         ...todo,
-        done: isSomeActiveTodo,
+        done: !isSomeCompletedTodo,
       })),
     );
   };
 
   const removeTodo = (selectedId: number) => {
-    setTodoListState((prevTodoList) =>
+    setOriginTodoList((prevTodoList) =>
       prevTodoList.filter(({ id }) => id !== selectedId),
     );
   };
@@ -41,7 +39,7 @@ function List() {
     prop: T1;
     value: T2;
   }) => {
-    setTodoListState((prevTodoList) => {
+    setOriginTodoList((prevTodoList) => {
       const selectedTodoIndex = prevTodoList.findIndex(
         ({ id }) => id === selectedId,
       );
