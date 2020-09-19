@@ -1,4 +1,5 @@
 import { Todo } from 'interfaces';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { todoListState } from 'store/atom';
@@ -7,7 +8,9 @@ import { computedTodoListState } from 'store/selector';
 import Item from './Item';
 
 function List() {
-  const computedTodoList = useRecoilValue(computedTodoListState);
+  const { asPath } = useRouter();
+
+  const computedTodoList = useRecoilValue(computedTodoListState(asPath));
   const [originTodoList, setOriginTodoList] = useRecoilState(todoListState);
 
   const onToggleAllTodo = () => {

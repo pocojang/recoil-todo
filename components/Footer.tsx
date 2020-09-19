@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { todoListState } from 'store/atom';
-import { computedTodoListState, todoCountState } from 'store/selector';
+import { todoCountState } from 'store/selector';
 
 import FooterNavLink from './FooterNavLink';
 
@@ -13,7 +13,6 @@ function Footer() {
     completed: completedTodoCount,
   } = useRecoilValue(todoCountState);
   const setTodoListState = useSetRecoilState(todoListState);
-  const setComputedFilter = useSetRecoilState(computedTodoListState);
 
   const isPluralNouns = activeTodoCount !== 1;
 
@@ -22,10 +21,6 @@ function Footer() {
       prevTodoList.filter(({ done }) => !done),
     );
   };
-
-  useEffect(() => {
-    setComputedFilter(asPath);
-  }, [asPath, setComputedFilter]);
 
   return (
     <footer className="footer">

@@ -1,4 +1,4 @@
-import { atom, useSetRecoilState } from 'recoil';
+import { atom } from 'recoil';
 
 import { sampleData, sampleFilterData } from '@/utils/sample-data';
 

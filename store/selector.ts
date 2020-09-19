@@ -1,16 +1,17 @@
-import { selector } from 'recoil';
+import { selector, selectorFamily } from 'recoil';
 
 import { sampleFilterData } from '@/utils/sample-data';
 
-import { filterState, todoListState } from './atom';
+import { todoListState } from './atom';
 
-const computedTodoListState = selector({
+type AsPath = typeof sampleFilterData[keyof typeof sampleFilterData] | string;
+
+const computedTodoListState = selectorFamily({
   key: 'computedTodoListState',
-  get: ({ get }) => {
+  get: (asPath: AsPath) => ({ get }) => {
     const todoList = get(todoListState);
-    const filter = get(filterState);
 
-    switch (filter) {
+    switch (asPath) {
       case sampleFilterData.active:
         return todoList.filter(({ done }) => !done);
       case sampleFilterData.completed:
@@ -19,7 +20,6 @@ const computedTodoListState = selector({
         return todoList;
     }
   },
-  set: ({ set }, newValue: any) => set(filterState, newValue),
 });
 
 const todoCountState = selector({
