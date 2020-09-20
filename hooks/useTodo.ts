@@ -3,21 +3,23 @@ import { useRecoilState } from 'recoil';
 
 import { todoListState } from '@/store/atoms';
 
+const getNewIdByList = <T extends { id: number }>(list: T[]) =>
+  Math.max(...list.map(({ id }) => id)) + 1;
+
 function useTodo() {
   const [originTodoList, setOriginTodoList] = useRecoilState(todoListState);
 
   const createTodo = (text: PickPropType<Todo, 'text'>) => {
-    setOriginTodoList((prevTodoList: Todo[]) => {
-      const newId = Math.max(...prevTodoList.map(({ id }) => id)) + 1;
+    setOriginTodoList((prevTodoList) => {
+      const isExistTodoList = prevTodoList?.length;
 
-      return [
-        ...prevTodoList,
-        {
-          id: newId,
-          text: text,
-          done: false,
-        },
-      ];
+      const newTodo = {
+        id: isExistTodoList ? getNewIdByList(prevTodoList) : 0,
+        text: text,
+        done: false,
+      };
+
+      return [...prevTodoList, newTodo];
     });
   };
 
