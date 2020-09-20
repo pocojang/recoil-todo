@@ -1,16 +1,10 @@
-import { Todo } from 'interfaces';
 import React, { useRef } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { todoListState } from 'store/atoms';
+
+import useTodo from '@/hooks/useTodo';
 
 function Header() {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const setTodoListState = useSetRecoilState(todoListState);
-
-  const createTodo = (text: string) => {
-    setTodoListState((prevTodoList) => newTodoItem(prevTodoList, text));
-  };
+  const { createTodo } = useTodo();
 
   const handleCreateTodo = ({ key }: React.KeyboardEvent) => {
     if (key !== 'Enter' || !inputRef.current) {
@@ -39,18 +33,5 @@ function Header() {
     </header>
   );
 }
-
-const newTodoItem = (prevTodoList: Todo[], text: string) => {
-  const newId = Math.max(...prevTodoList.map(({ id }) => id)) + 1;
-
-  return [
-    ...prevTodoList,
-    {
-      id: newId,
-      text: text,
-      done: false,
-    },
-  ];
-};
 
 export default Header;
