@@ -2,13 +2,19 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
 
-import { Todo } from '../interfaces';
+import { PickPropType, Todo } from '../interfaces';
 
 type Props = {
   todo: Todo;
-  updateTodo: (selectedId: number, text: string) => void;
-  toggleTodo: (selectedId: number, isDone: boolean) => void;
-  removeTodo: (selectedId: number) => void;
+  updateTodo: (
+    id: PickPropType<Todo, 'id'>,
+    text: PickPropType<Todo, 'text'>,
+  ) => void;
+  toggleTodo: (
+    id: PickPropType<Todo, 'id'>,
+    isDone: PickPropType<Todo, 'done'>,
+  ) => void;
+  removeTodo: (id: PickPropType<Todo, 'id'>) => void;
 };
 
 function Item({
