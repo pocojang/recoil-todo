@@ -1,5 +1,5 @@
 {
-  "name": "modern-todo",
+  "name": "recoil-todo",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
