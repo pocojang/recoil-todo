@@ -1,10 +1,9 @@
+import { TodoFilter } from 'interfaces';
 import { selector, selectorFamily } from 'recoil';
-
-import { sampleFilterData } from '@/utils/sample-data';
 
 import { todoListState } from './atoms';
 
-type AsPath = typeof sampleFilterData[keyof typeof sampleFilterData] | string;
+type AsPath = typeof TodoFilter[keyof typeof TodoFilter] | string;
 
 const computedTodoListState = selectorFamily({
   key: 'computedTodoListState',
@@ -12,9 +11,9 @@ const computedTodoListState = selectorFamily({
     const todoList = get(todoListState);
 
     switch (asPath) {
-      case sampleFilterData.active:
+      case TodoFilter.active:
         return todoList.filter(({ done }) => !done);
-      case sampleFilterData.completed:
+      case TodoFilter.completed:
         return todoList.filter(({ done }) => done);
       default:
         return todoList;

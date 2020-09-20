@@ -1,15 +1,14 @@
+import { TodoFilter } from 'interfaces';
 import { atom } from 'recoil';
-
-import { sampleData, sampleFilterData } from '@/utils/sample-data';
 
 const todoListState = atom({
   key: 'todoListState',
-  default: sampleData,
+  default: [],
 });
 
 const filterState = atom({
   key: 'filterState',
-  default: sampleFilterData.all,
+  default: TodoFilter.all,
 });
 
 export { todoListState, filterState };
