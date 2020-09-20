@@ -7,6 +7,7 @@ function RecoilTransactionObserver() {
     const atomLoadable = snapshot.getLoadable(todoListState);
 
     if (atomLoadable.state === 'hasValue') {
+      // TODO: isolate local storage logic to hooks or util
       window.localStorage.setItem(
         'recoil-todo',
         JSON.stringify({ value: atomLoadable.contents }),

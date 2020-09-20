@@ -12,6 +12,7 @@ import { todoListState } from '@/store/atoms';
 import { RecoilTransactionObserver } from '@/store/snapshots';
 
 export default function App({ Component, pageProps }: AppProps) {
+  // TODO: isolate local storage logic to hooks or util
   const initializeState = ({ set }: MutableSnapshot) => {
     if (!process.browser) {
       return;
@@ -34,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   };
 
-  // Error Warning: Expected server HTML to contain a matching <section> in <section>.
+  // TODO: Error Warning: Expected server HTML to contain a matching <section> in <section>.
   return (
     <React.Fragment>
       <Head>
