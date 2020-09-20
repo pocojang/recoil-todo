@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { todoListState } from '@/store/atoms';
 
 import Footer from '@/components/Footer';
 import List from '@/components/List';
+import { todoListState } from '@/store/atoms';
 
 export default function ContentContainer() {
   const todoList = useRecoilValue(todoListState);

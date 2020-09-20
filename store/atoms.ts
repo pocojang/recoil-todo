@@ -1,12 +1,12 @@
-import { TodoFilter } from 'interfaces';
+import { Todo, TodoFilter, TodoStatus } from 'interfaces';
 import { atom } from 'recoil';
 
-const todoListState = atom({
+const todoListState = atom<Todo[]>({
   key: 'todoListState',
   default: [],
 });
 
-const filterState = atom({
+const filterState = atom<TodoStatus>({
   key: 'filterState',
   default: TodoFilter.all,
 });
