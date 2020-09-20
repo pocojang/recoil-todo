@@ -1,6 +1,7 @@
 import { PickPropType, Todo } from 'interfaces';
 import { useRecoilState } from 'recoil';
-import { todoListState } from 'store/atoms';
+
+import { todoListState } from '@/store/atoms';
 
 function useTodo() {
   const [originTodoList, setOriginTodoList] = useRecoilState(todoListState);

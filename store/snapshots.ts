@@ -1,5 +1,6 @@
 import { useRecoilTransactionObserver_UNSTABLE } from 'recoil';
-import { todoListState } from 'store/atoms';
+
+import { todoListState } from '@/store/atoms';
 
 function RecoilTransactionObserver() {
   useRecoilTransactionObserver_UNSTABLE(({ snapshot }) => {

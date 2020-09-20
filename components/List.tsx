@@ -2,9 +2,9 @@ import { Todo } from 'interfaces';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { computedTodoListState } from 'store/selectors';
 
 import useTodo from '@/hooks/useTodo';
+import { computedTodoListState } from '@/store/selectors';
 
 import Item from './Item';
 

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { todoCountState } from 'store/selectors';
 
 import useTodo from '@/hooks/useTodo';
+import { todoCountState } from '@/store/selectors';
 
 import FooterNavLink from './FooterNavLink';
 
