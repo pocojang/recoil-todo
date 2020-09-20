@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import useTodo from '@/hooks/useTodo';
 import { computedTodoListState } from '@/store/selectors';
 
-import Item from './Item';
+import TodoItem from './TodoItem';
 
 function List() {
   const { asPath } = useRouter();
@@ -41,7 +41,7 @@ function List() {
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
         {computedTodoList.map((todo: Todo, index: number) => (
-          <Item
+          <TodoItem
             key={index}
             todo={todo}
             updateTodo={onUpdateTodo}

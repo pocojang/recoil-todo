@@ -2,10 +2,10 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 
 import Footer from '@/components/Footer';
-import List from '@/components/List';
+import TodoList from '@/components/TodoList';
 import { todoListState } from '@/store/atoms';
 
-export default function ContentContainer() {
+export default function TodoContainer() {
   const todoList = useRecoilValue(todoListState);
   const isEmptyTodo = !todoList || !todoList.length;
 
@@ -15,7 +15,7 @@ export default function ContentContainer() {
 
   return (
     <React.Fragment>
-      <List />
+      <TodoList />
       <Footer />
     </React.Fragment>
   );

@@ -5,9 +5,9 @@ import Head from 'next/head';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 
-import ContentContainer from '@/components/ContentContainer';
 import Header from '@/components/Header';
 import Layout from '@/components/Layout';
+import TodoContainer from '@/components/TodoContainer';
 import { todoListState } from '@/store/atoms';
 import { RecoilTransactionObserver } from '@/store/snapshots';
 
@@ -48,7 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <RecoilTransactionObserver />
           <Header />
           <Component {...pageProps}>
-            <ContentContainer />
+            <TodoContainer />
           </Component>
         </RecoilRoot>
       </Layout>
