@@ -7,7 +7,7 @@ import { todoListState } from '@/store/atoms';
 
 export default function ContentContainer() {
   const todoList = useRecoilValue(todoListState);
-  const isEmptyTodo = !todoList.length;
+  const isEmptyTodo = !todoList || !todoList.length;
 
   if (isEmptyTodo) {
     return null;
