@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import useTodo from '@/hooks/useTodo';
@@ -14,13 +14,17 @@ function Footer() {
     active: activeTodoCount,
     completed: completedTodoCount,
   } = useRecoilValue(todoCountState);
-  const isPluralNouns = activeTodoCount !== 1;
+  const todoCountInfo = useMemo(() => {
+    const isSingularNoun = activeTodoCount === 1;
+
+    return ` item${isSingularNoun ? '' : 's'} left`;
+  }, [activeTodoCount]);
 
   return (
     <footer className="footer">
       <span className="todo-count">
         <strong>{activeTodoCount}</strong>
-        <span> item{isPluralNouns && 's'} left</span>
+        <span>{todoCountInfo}</span>
       </span>
 
       <ul className="filters">
