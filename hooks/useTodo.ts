@@ -1,11 +1,11 @@
-import { Todo } from 'interfaces';
+import { PickPropType, Todo } from 'interfaces';
 import { useRecoilState } from 'recoil';
 import { todoListState } from 'store/atoms';
 
 function useTodo() {
   const [originTodoList, setOriginTodoList] = useRecoilState(todoListState);
 
-  const createTodo = (text: string) => {
+  const createTodo = (text: PickPropType<Todo, 'text'>) => {
     setOriginTodoList((prevTodoList: Todo[]) => {
       const newId = Math.max(...prevTodoList.map(({ id }) => id)) + 1;
 
@@ -61,7 +61,7 @@ function useTodo() {
     );
   };
 
-  const removeTodo = (selectedId: number) => {
+  const removeTodo = (selectedId: PickPropType<Todo, 'id'>) => {
     setOriginTodoList((prevTodoList) =>
       prevTodoList.filter(({ id }) => id !== selectedId),
     );
