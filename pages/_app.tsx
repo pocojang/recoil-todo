@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
+import { RecoilTransactionObserver } from 'store/snapshots';
 
 import ContentContainer from '@/components/ContentContainer';
 import Header from '@/components/Header';
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Layout>
         <RecoilRoot>
+          <RecoilTransactionObserver />
           <Header />
           <Component {...pageProps}>
             <ContentContainer />
