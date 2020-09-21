@@ -1,3 +1,4 @@
+import { TodoFilter } from 'interfaces';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -31,12 +32,16 @@ function Footer() {
         <FooterNavLink currentPath={asPath} asPath="/" href="/">
           All
         </FooterNavLink>
-        <FooterNavLink currentPath={asPath} asPath="/active" href="/[status]">
+        <FooterNavLink
+          currentPath={asPath}
+          asPath={TodoFilter.active}
+          href="/[status]"
+        >
           Active
         </FooterNavLink>
         <FooterNavLink
           currentPath={asPath}
-          asPath="/completed"
+          asPath={TodoFilter.completed}
           href="/[status]"
         >
           Completed

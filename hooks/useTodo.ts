@@ -1,5 +1,5 @@
 import { PickPropType, Todo } from 'interfaces';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 import { todoListState } from '@/store/atoms';
 
@@ -7,7 +7,7 @@ const getNewIdByList = <T extends { id: number }>(list: T[]) =>
   Math.max(...list.map(({ id }) => id)) + 1;
 
 function useTodo() {
-  const [originTodoList, setOriginTodoList] = useRecoilState(todoListState);
+  const setOriginTodoList = useSetRecoilState(todoListState);
 
   const createTodo = (text: PickPropType<Todo, 'text'>) => {
     setOriginTodoList((prevTodoList) => {
