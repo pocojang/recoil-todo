@@ -53,13 +53,20 @@ function useTodo() {
     });
   };
 
-  const updateAllTodo = () => {
-    const isSomeCompletedTodo = originTodoList.some(({ done }) => done);
-
+  const updateAllTodo = <
+    T1 extends keyof Pick<Todo, 'text' | 'done'>,
+    T2 extends T1 extends 'text' ? string : boolean
+  >({
+    prop,
+    value,
+  }: {
+    prop: T1;
+    value: T2;
+  }) => {
     setOriginTodoList((prevTodoList) =>
       prevTodoList.map((todo) => ({
         ...todo,
-        done: !isSomeCompletedTodo,
+        [prop]: value,
       })),
     );
   };

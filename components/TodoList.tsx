@@ -22,6 +22,13 @@ function List() {
     });
   };
 
+  const onToggleAllTodo = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    updateAllTodo({
+      prop: 'done',
+      value: target.checked,
+    });
+  };
+
   const onUpdateTodo = (selectedId: number, text: string) => {
     updateTodo({
       selectedId,
@@ -36,7 +43,7 @@ function List() {
         id="toggle-all"
         className="toggle-all"
         type="checkbox"
-        onClick={updateAllTodo}
+        onChange={onToggleAllTodo}
       />
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
