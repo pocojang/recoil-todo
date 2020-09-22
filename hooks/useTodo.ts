@@ -14,7 +14,8 @@ function useTodo() {
 
   const createTodo = (text: PickPropType<Todo, 'text'>) => {
     setOriginTodoList((prevTodoList) => {
-      const isExistTodoList = prevTodoList?.length;
+      // TODO: https://github.com/vercel/next.js/issues/17273
+      const isExistTodoList = prevTodoList && prevTodoList.length;
 
       const newTodo = {
         id: isExistTodoList ? getNewIdByList(prevTodoList) : 0,
