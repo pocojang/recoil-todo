@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     try {
       const recoilTodoJSON = window.localStorage.getItem('recoil-todo');
-      const initValue = recoilTodoJSON ? JSON.parse(recoilTodoJSON).value : [];
+      const initValue = recoilTodoJSON ? JSON.parse(recoilTodoJSON) : [];
 
       if (!Array.isArray(initValue)) {
         throw new Error('Invalid Local Storage Data');

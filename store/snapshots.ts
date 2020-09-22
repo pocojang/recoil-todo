@@ -10,7 +10,7 @@ function RecoilTransactionObserver() {
       // TODO: isolate local storage logic to hooks or util
       window.localStorage.setItem(
         'recoil-todo',
-        JSON.stringify({ value: atomLoadable.contents }),
+        JSON.stringify(atomLoadable.contents),
       );
     }
   });
