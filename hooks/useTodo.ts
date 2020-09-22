@@ -3,8 +3,11 @@ import { useSetRecoilState } from 'recoil';
 
 import { todoListState } from '@/store/atoms';
 
-const getNewIdByList = <T extends { id: number }>(list: T[]) =>
-  Math.max(...list.map(({ id }) => id)) + 1;
+type UpdateTodo<P, V> = {
+  selectedId?: number;
+  prop: P;
+  value: V;
+};
 
 function useTodo() {
   const setOriginTodoList = useSetRecoilState(todoListState);
@@ -30,11 +33,7 @@ function useTodo() {
     selectedId,
     prop,
     value,
-  }: {
-    selectedId: number;
-    prop: T1;
-    value: T2;
-  }) => {
+  }: UpdateTodo<T1, T2>) => {
     setOriginTodoList((prevTodoList) => {
       const selectedTodoIndex = prevTodoList.findIndex(
         ({ id }) => id === selectedId,
@@ -59,10 +58,7 @@ function useTodo() {
   >({
     prop,
     value,
-  }: {
-    prop: T1;
-    value: T2;
-  }) => {
+  }: UpdateTodo<T1, T2>) => {
     setOriginTodoList((prevTodoList) =>
       prevTodoList.map((todo) => ({
         ...todo,
@@ -91,5 +87,8 @@ function useTodo() {
     removeCompletedTodos,
   };
 }
+
+const getNewIdByList = <T extends { id: number }>(list: T[]) =>
+  Math.max(...list.map(({ id }) => id)) + 1;
 
 export default useTodo;
