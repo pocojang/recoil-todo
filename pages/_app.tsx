@@ -35,7 +35,16 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   };
 
-  // TODO: Error Warning: Expected server HTML to contain a matching <section> in <section>.
+  /**
+   * TODO
+   *
+   * 1. HMR or Strict Mode Issue
+   *  - https://github.com/facebookexperimental/Recoil/issues/75
+   *  - https://github.com/facebookexperimental/Recoil/issues/213
+   *  - https://file-translate.com/en/blog/recoil-duplicate-atom-key
+   *
+   * 2. Error Warning: Expected server HTML to contain a matching <section> in <section>.
+   */
   return (
     <React.Fragment>
       <Head>
