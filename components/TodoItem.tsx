@@ -17,6 +17,11 @@ type Props = {
   removeTodo: (id: PickPropType<Todo, 'id'>) => void;
 };
 
+/**
+ * TODO: nullish coalescing and optional chaining
+ *
+ * @see https://github.com/vercel/next.js/issues/17273
+ */
 function Item({
   todo: { id, text, done },
   updateTodo,
@@ -84,8 +89,10 @@ function Item({
       return;
     }
 
-    inputRef.current?.focus();
-    inputRef.current?.setSelectionRange(text.length, text.length);
+    if (inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.setSelectionRange(text.length, text.length);
+    }
   }, [editMode, text]);
 
   return (
