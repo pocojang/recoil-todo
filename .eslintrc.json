@@ -48,7 +48,8 @@
         "extensions": ["ts", ".tsx"]
       }
     ],
-    "simple-import-sort/sort": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "eol-last": ["error", "always"],
     "eqeqeq": "error",
     "padding-line-between-statements": [
